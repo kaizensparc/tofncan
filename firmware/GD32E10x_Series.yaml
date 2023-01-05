@@ -1,0 +1,268 @@
+---
+name: GD32E10x Series
+manufacturer: ~
+variants:
+  - name: GD32E103C8
+    part: ~
+    cores:
+      - name: main
+        type: armv7em
+        core_access_options:
+          Arm:
+            ap: 0
+            psel: 0
+            debug_base: ~
+            cti_base: ~
+    memory_map:
+      - Ram:
+          name: ~
+          range:
+            start: 536870912
+            end: 536891392
+          is_boot_memory: false
+          cores:
+            - main
+      - Nvm:
+          name: ~
+          range:
+            start: 134217728
+            end: 134283264
+          is_boot_memory: true
+          cores:
+            - main
+    flash_algorithms:
+      - gd32e10x
+  - name: GD32E103CB
+    part: ~
+    cores:
+      - name: main
+        type: armv7em
+        core_access_options:
+          Arm:
+            ap: 0
+            psel: 0
+            debug_base: ~
+            cti_base: ~
+    memory_map:
+      - Ram:
+          name: ~
+          range:
+            start: 536870912
+            end: 536903680
+          is_boot_memory: false
+          cores:
+            - main
+      - Nvm:
+          name: ~
+          range:
+            start: 134217728
+            end: 134348800
+          is_boot_memory: true
+          cores:
+            - main
+    flash_algorithms:
+      - gd32e10x
+  - name: GD32E103R8
+    part: ~
+    cores:
+      - name: main
+        type: armv7em
+        core_access_options:
+          Arm:
+            ap: 0
+            psel: 0
+            debug_base: ~
+            cti_base: ~
+    memory_map:
+      - Ram:
+          name: ~
+          range:
+            start: 536870912
+            end: 536891392
+          is_boot_memory: false
+          cores:
+            - main
+      - Nvm:
+          name: ~
+          range:
+            start: 134217728
+            end: 134283264
+          is_boot_memory: true
+          cores:
+            - main
+    flash_algorithms:
+      - gd32e10x
+  - name: GD32E103RB
+    part: ~
+    cores:
+      - name: main
+        type: armv7em
+        core_access_options:
+          Arm:
+            ap: 0
+            psel: 0
+            debug_base: ~
+            cti_base: ~
+    memory_map:
+      - Ram:
+          name: ~
+          range:
+            start: 536870912
+            end: 536903680
+          is_boot_memory: false
+          cores:
+            - main
+      - Nvm:
+          name: ~
+          range:
+            start: 134217728
+            end: 134348800
+          is_boot_memory: true
+          cores:
+            - main
+    flash_algorithms:
+      - gd32e10x
+  - name: GD32E103T8
+    part: ~
+    cores:
+      - name: main
+        type: armv7em
+        core_access_options:
+          Arm:
+            ap: 0
+            psel: 0
+            debug_base: ~
+            cti_base: ~
+    memory_map:
+      - Ram:
+          name: ~
+          range:
+            start: 536870912
+            end: 536891392
+          is_boot_memory: false
+          cores:
+            - main
+      - Nvm:
+          name: ~
+          range:
+            start: 134217728
+            end: 134283264
+          is_boot_memory: true
+          cores:
+            - main
+    flash_algorithms:
+      - gd32e10x
+  - name: GD32E103TB
+    part: ~
+    cores:
+      - name: main
+        type: armv7em
+        core_access_options:
+          Arm:
+            ap: 0
+            psel: 0
+            debug_base: ~
+            cti_base: ~
+    memory_map:
+      - Ram:
+          name: ~
+          range:
+            start: 536870912
+            end: 536903680
+          is_boot_memory: false
+          cores:
+            - main
+      - Nvm:
+          name: ~
+          range:
+            start: 134217728
+            end: 134348800
+          is_boot_memory: true
+          cores:
+            - main
+    flash_algorithms:
+      - gd32e10x
+  - name: GD32E103V8
+    part: ~
+    cores:
+      - name: main
+        type: armv7em
+        core_access_options:
+          Arm:
+            ap: 0
+            psel: 0
+            debug_base: ~
+            cti_base: ~
+    memory_map:
+      - Ram:
+          name: ~
+          range:
+            start: 536870912
+            end: 536891392
+          is_boot_memory: false
+          cores:
+            - main
+      - Nvm:
+          name: ~
+          range:
+            start: 134217728
+            end: 134283264
+          is_boot_memory: true
+          cores:
+            - main
+    flash_algorithms:
+      - gd32e10x
+  - name: GD32E103VB
+    part: ~
+    cores:
+      - name: main
+        type: armv7em
+        core_access_options:
+          Arm:
+            ap: 0
+            psel: 0
+            debug_base: ~
+            cti_base: ~
+    memory_map:
+      - Ram:
+          name: ~
+          range:
+            start: 536870912
+            end: 536903680
+          is_boot_memory: false
+          cores:
+            - main
+      - Nvm:
+          name: ~
+          range:
+            start: 134217728
+            end: 134348800
+          is_boot_memory: true
+          cores:
+            - main
+    flash_algorithms:
+      - gd32e10x
+flash_algorithms:
+  - name: gd32e10x
+    description: GD32E10x
+    default: true
+    instructions: ELUDRlgMQARUTExEIGAAIFNMIGBTSGBgU0hgYCBGwGkA8AQAQLlF8lVQUEwgYAYgYGBA9v9woGAAIBC9AUZISABpQPCAAEZKEGEAIHBHREgAaUDwBABCSQhhCEYAaUDwQAAIYQPgSvaqIEBJCGA8SMBoAPABAAAo9dE5SABpIPAEADdJCGEAIHBHAUY0SABpQPACADJKEGEQRkFhAGlA8EAAEGED4Er2qiAwShBgLEjAaADwAQAAKPXRKUgAaSDwAgAnShBhACBwR/C1A0YAJlUYAfAHABixAfAHAMDxCAYAJAPg/yAF+AELZBy0QvnTyB0g8AcBGUhIRABoAPUAMINCKNIl4BZIAGlA8AEAFE84YRBoGGBQaFhgAL8QSMBoAPABAAAo+dENSABpIPABAAtPOGE4RsBoAPAUADCxOEbAaEDwFAD4YAEg8L0IMwgyCDkAKdfRACD35wAABAAAAAAgAkAjAWdFq4nvzQAwAEAAAAAAAAAAAA==
+    load_address: ~
+    pc_init: 1
+    pc_uninit: 61
+    pc_program_page: 203
+    pc_erase_sector: 139
+    pc_erase_all: 79
+    data_section_offset: 368
+    flash_properties:
+      address_range:
+        start: 134217728
+        end: 134348800
+      page_size: 1024
+      erased_byte_value: 255
+      program_page_timeout: 150
+      erase_sector_timeout: 1000
+      sectors:
+        - size: 1024
+          address: 0
+    cores: []

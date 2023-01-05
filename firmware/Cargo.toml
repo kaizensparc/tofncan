@@ -1,0 +1,36 @@
+[package]
+name = "tofncan"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+embedded-hal = "0.2.7"
+cortex-m = { version = "0.7.6", features = ["critical-section-single-core"] }
+cortex-m-rt = "0.7.2"
+nb = "1.0.0"
+panic-semihosting = "0.6.0"
+panic-halt = "0.2.0"
+cortex-m-semihosting = "0.5.0"
+rtt-target = { version = "0.3.1", features = ["cortex-m"] }
+veml7700 = "0.1.7"
+vl53l1 = "0.1.1"
+shared-bus = { version = "0.2.5", features = ["cortex-m"] }
+
+[patch.crates-io]
+gd32e1 = { path = "/home/kaizen/rust/gd32-rs/gd32e1" }
+
+[dependencies.sht3x]
+git = "https://github.com/miek/sht3x-rs"
+branch = "master"
+
+[dependencies.gd32e103-hal]
+path = "/home/kaizen/rust/gd32e103-hal"
+features = ["rt"]
+
+[profile.dev]
+codegen-units = 1
+debug = 0
+lto = true
+opt-level = "z"
