@@ -10,9 +10,9 @@
 //! The bus addressing for this node is the following:
 //!
 //! - 0 (emitter): Welcome message, sent at boot only
-//! - 1 [TODO] (receiver): system configuration registers
-//! - 2 [TODO] (receiver): TOF general configuration registers
-//! - 3 [TODO] (receiver): TOF timing registers
+//! - 1 (receiver): system configuration registers
+//! - 2 (receiver): TOF general configuration registers
+//! - 3 (receiver): TOF timing registers
 //! - 4 (emitter): SHT30 results
 //! - 5 (emitter): VEML results
 //! - 6 (emitter): VL53 rates readings
@@ -116,12 +116,86 @@ where
     rprintln!("Done.");
 }
 
-fn wait_for_system_config<I>(
+fn parse_can_msg<I, T>(
+    frame: &bxcan::Frame,
+    can_bus: &mut bxcan::Can<I>,
+    cdt: &mut T,
+    tof: &mut vl53l1::Device,
+) where
+    I: bxcan::Instance,
+    T: embedded_hal::timer::CountDown,
+    T::Time: From<gd32e103_hal::time::Hertz>,
+{
+    let id = {
+        match frame.id() {
+            bxcan::Id::Standard(x) => x.as_raw(),
+            bxcan::Id::Extended(_) => return,
+        }
+    };
+
+    let data = match frame.data() {
+        Some(x) => x,
+        None => return,
+    };
+
+    if id == FrameIds::SystemConfiguration as u16 {
+        if data.len() != 6 {
+            return;
+        }
+        if data[0] != 0 {
+            cortex_m::peripheral::SCB::sys_reset();
+        }
+        can_bus
+            .modify_config()
+            .set_automatic_retransmit(data[1] != 0)
+            .enable();
+        let t_ms = u32::from_be_bytes(data[2..5].try_into().unwrap());
+        cdt.start((1000 / t_ms).hz());
+    } else if id == FrameIds::ToFGeneralConfiguration as u16 {
+        if data.len() != 5 {
+            return;
+        }
+        let distance_mode = match data[0] {
+            1 => vl53l1::DistanceMode::Short,
+            2 => vl53l1::DistanceMode::Medium,
+            3 => vl53l1::DistanceMode::Long,
+            _ => return,
+        };
+        vl53l1::set_distance_mode(tof, distance_mode).unwrap();
+        let roi = vl53l1::UserRoi {
+            bot_right_x: data[1],
+            bot_right_y: data[2],
+            top_left_x: data[3],
+            top_left_y: data[4],
+        };
+        vl53l1::set_user_roi(tof, roi).unwrap();
+    } else if id == FrameIds::ToFTiming as u16 {
+        if data.len() != 8 {
+            return;
+        }
+        vl53l1::set_measurement_timing_budget_micro_seconds(
+            tof,
+            u32::from_be_bytes(data[..3].try_into().unwrap()),
+        )
+        .unwrap();
+        vl53l1::set_inter_measurement_period_milli_seconds(
+            tof,
+            u32::from_be_bytes(data[4..7].try_into().unwrap()),
+        )
+        .unwrap();
+    }
+}
+
+fn wait_for_system_config<I, T>(
     can_bus: &mut bxcan::Can<I>,
     wdt: &mut watchdog::FreeWatchdog,
     delay: &mut Delay,
+    cdt: &mut T,
+    tof: &mut vl53l1::Device,
 ) where
     I: bxcan::Instance,
+    T: embedded_hal::timer::CountDown,
+    T::Time: From<gd32e103_hal::time::Hertz>,
 {
     rprint!("Waiting for configuration... ");
     let mut iter = 0u32;
@@ -129,6 +203,7 @@ fn wait_for_system_config<I>(
         wdt.feed();
         match can_bus.receive() {
             Ok(rx) => {
+                parse_can_msg(&rx, can_bus, cdt, tof);
                 if rx.id()
                     == bxcan::Id::Standard(
                         bxcan::StandardId::new(FrameIds::SystemConfiguration as u16).unwrap(),
@@ -262,13 +337,15 @@ fn read_send_vl53<I, I2C, E>(
     can_bus.transmit(&frame).unwrap();
 }
 
-fn check_incoming<I>(can_bus: &mut bxcan::Can<I>)
+fn check_incoming<I, T>(can_bus: &mut bxcan::Can<I>, cdt: &mut T, tof: &mut vl53l1::Device)
 where
     I: bxcan::Instance,
+    T: embedded_hal::timer::CountDown,
+    T::Time: From<gd32e103_hal::time::Hertz>,
 {
     loop {
         match can_bus.rx0().receive() {
-            Ok(rx) => rprint!("{:?} => {:?}", rx.id(), rx.data()),
+            Ok(rx) => parse_can_msg(&rx, can_bus, cdt, tof),
             Err(nb::Error::Other(_)) => rprint!("Overrun error"),
             Err(nb::Error::WouldBlock) => break,
         };
@@ -434,12 +511,11 @@ fn main() -> ! {
     // Send the welcome message and wait for a start/timeout before looping
     wdt.feed();
     send_welcome(&mut can_bus, reason);
-    wait_for_system_config(&mut can_bus, &mut wdt, &mut delay);
+    wait_for_system_config(&mut can_bus, &mut wdt, &mut delay, &mut cdt, &mut tof);
 
-    cdt.start(1.hz());
     loop {
         if cdt.wait() == Err(nb::Error::WouldBlock) {
-            check_incoming(&mut can_bus);
+            check_incoming(&mut can_bus, &mut cdt, &mut tof);
             wdt.feed();
             continue;
         }
@@ -465,8 +541,5 @@ fn main() -> ! {
 
         wdt.feed();
         rprintln!("Done.");
-
-        check_incoming(&mut can_bus);
-        wdt.feed();
     }
 }
