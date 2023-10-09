@@ -7,29 +7,28 @@ variants:
     cores:
       - name: main
         type: armv7em
-        core_access_options:
-          Arm:
-            ap: 0
-            psel: 0
-            debug_base: ~
-            cti_base: ~
+        core_access_options: !Arm
+          ap: 0
+          psel: 0
+          debug_base: ~
+          cti_base: ~
     memory_map:
-      - Ram:
-          name: ~
-          range:
-            start: 536870912
-            end: 536891392
-          is_boot_memory: false
-          cores:
-            - main
-      - Nvm:
-          name: ~
-          range:
-            start: 134217728
-            end: 134283264
-          is_boot_memory: true
-          cores:
-            - main
+      - !Ram
+        name: ~
+        range:
+          start: 536870912
+          end: 536891392
+        is_boot_memory: false
+        cores:
+          - main
+      - !Nvm
+        name: ~
+        range:
+          start: 134217728
+          end: 134283264
+        is_boot_memory: true
+        cores:
+          - main
     flash_algorithms:
       - gd32e10x
   - name: GD32E103CB
@@ -37,29 +36,28 @@ variants:
     cores:
       - name: main
         type: armv7em
-        core_access_options:
-          Arm:
-            ap: 0
-            psel: 0
-            debug_base: ~
-            cti_base: ~
+        core_access_options: !Arm
+          ap: 0
+          psel: 0
+          debug_base: ~
+          cti_base: ~
     memory_map:
-      - Ram:
-          name: ~
-          range:
-            start: 536870912
-            end: 536903680
-          is_boot_memory: false
-          cores:
-            - main
-      - Nvm:
-          name: ~
-          range:
-            start: 134217728
-            end: 134348800
-          is_boot_memory: true
-          cores:
-            - main
+      - !Ram
+        name: ~
+        range:
+          start: 536870912
+          end: 536903680
+        is_boot_memory: false
+        cores:
+          - main
+      - !Nvm
+        name: ~
+        range:
+          start: 134217728
+          end: 134348800
+        is_boot_memory: true
+        cores:
+          - main
     flash_algorithms:
       - gd32e10x
   - name: GD32E103R8
@@ -67,29 +65,28 @@ variants:
     cores:
       - name: main
         type: armv7em
-        core_access_options:
-          Arm:
-            ap: 0
-            psel: 0
-            debug_base: ~
-            cti_base: ~
+        core_access_options: !Arm
+          ap: 0
+          psel: 0
+          debug_base: ~
+          cti_base: ~
     memory_map:
-      - Ram:
-          name: ~
-          range:
-            start: 536870912
-            end: 536891392
-          is_boot_memory: false
-          cores:
-            - main
-      - Nvm:
-          name: ~
-          range:
-            start: 134217728
-            end: 134283264
-          is_boot_memory: true
-          cores:
-            - main
+      - !Ram
+        name: ~
+        range:
+          start: 536870912
+          end: 536891392
+        is_boot_memory: false
+        cores:
+          - main
+      - !Nvm
+        name: ~
+        range:
+          start: 134217728
+          end: 134283264
+        is_boot_memory: true
+        cores:
+          - main
     flash_algorithms:
       - gd32e10x
   - name: GD32E103RB
@@ -97,29 +94,28 @@ variants:
     cores:
       - name: main
         type: armv7em
-        core_access_options:
-          Arm:
-            ap: 0
-            psel: 0
-            debug_base: ~
-            cti_base: ~
+        core_access_options: !Arm
+          ap: 0
+          psel: 0
+          debug_base: ~
+          cti_base: ~
     memory_map:
-      - Ram:
-          name: ~
-          range:
-            start: 536870912
-            end: 536903680
-          is_boot_memory: false
-          cores:
-            - main
-      - Nvm:
-          name: ~
-          range:
-            start: 134217728
-            end: 134348800
-          is_boot_memory: true
-          cores:
-            - main
+      - !Ram
+        name: ~
+        range:
+          start: 536870912
+          end: 536903680
+        is_boot_memory: false
+        cores:
+          - main
+      - !Nvm
+        name: ~
+        range:
+          start: 134217728
+          end: 134348800
+        is_boot_memory: true
+        cores:
+          - main
     flash_algorithms:
       - gd32e10x
   - name: GD32E103T8
@@ -127,29 +123,28 @@ variants:
     cores:
       - name: main
         type: armv7em
-        core_access_options:
-          Arm:
-            ap: 0
-            psel: 0
-            debug_base: ~
-            cti_base: ~
+        core_access_options: !Arm
+          ap: 0
+          psel: 0
+          debug_base: ~
+          cti_base: ~
     memory_map:
-      - Ram:
-          name: ~
-          range:
-            start: 536870912
-            end: 536891392
-          is_boot_memory: false
-          cores:
-            - main
-      - Nvm:
-          name: ~
-          range:
-            start: 134217728
-            end: 134283264
-          is_boot_memory: true
-          cores:
-            - main
+      - !Ram
+        name: ~
+        range:
+          start: 536870912
+          end: 536891392
+        is_boot_memory: false
+        cores:
+          - main
+      - !Nvm
+        name: ~
+        range:
+          start: 134217728
+          end: 134283264
+        is_boot_memory: true
+        cores:
+          - main
     flash_algorithms:
       - gd32e10x
   - name: GD32E103TB
@@ -157,29 +152,28 @@ variants:
     cores:
       - name: main
         type: armv7em
-        core_access_options:
-          Arm:
-            ap: 0
-            psel: 0
-            debug_base: ~
-            cti_base: ~
+        core_access_options: !Arm
+          ap: 0
+          psel: 0
+          debug_base: ~
+          cti_base: ~
     memory_map:
-      - Ram:
-          name: ~
-          range:
-            start: 536870912
-            end: 536903680
-          is_boot_memory: false
-          cores:
-            - main
-      - Nvm:
-          name: ~
-          range:
-            start: 134217728
-            end: 134348800
-          is_boot_memory: true
-          cores:
-            - main
+      - !Ram
+        name: ~
+        range:
+          start: 536870912
+          end: 536903680
+        is_boot_memory: false
+        cores:
+          - main
+      - !Nvm
+        name: ~
+        range:
+          start: 134217728
+          end: 134348800
+        is_boot_memory: true
+        cores:
+          - main
     flash_algorithms:
       - gd32e10x
   - name: GD32E103V8
@@ -187,29 +181,28 @@ variants:
     cores:
       - name: main
         type: armv7em
-        core_access_options:
-          Arm:
-            ap: 0
-            psel: 0
-            debug_base: ~
-            cti_base: ~
+        core_access_options: !Arm
+          ap: 0
+          psel: 0
+          debug_base: ~
+          cti_base: ~
     memory_map:
-      - Ram:
-          name: ~
-          range:
-            start: 536870912
-            end: 536891392
-          is_boot_memory: false
-          cores:
-            - main
-      - Nvm:
-          name: ~
-          range:
-            start: 134217728
-            end: 134283264
-          is_boot_memory: true
-          cores:
-            - main
+      - !Ram
+        name: ~
+        range:
+          start: 536870912
+          end: 536891392
+        is_boot_memory: false
+        cores:
+          - main
+      - !Nvm
+        name: ~
+        range:
+          start: 134217728
+          end: 134283264
+        is_boot_memory: true
+        cores:
+          - main
     flash_algorithms:
       - gd32e10x
   - name: GD32E103VB
@@ -217,29 +210,28 @@ variants:
     cores:
       - name: main
         type: armv7em
-        core_access_options:
-          Arm:
-            ap: 0
-            psel: 0
-            debug_base: ~
-            cti_base: ~
+        core_access_options: !Arm
+          ap: 0
+          psel: 0
+          debug_base: ~
+          cti_base: ~
     memory_map:
-      - Ram:
-          name: ~
-          range:
-            start: 536870912
-            end: 536903680
-          is_boot_memory: false
-          cores:
-            - main
-      - Nvm:
-          name: ~
-          range:
-            start: 134217728
-            end: 134348800
-          is_boot_memory: true
-          cores:
-            - main
+      - !Ram
+        name: ~
+        range:
+          start: 536870912
+          end: 536903680
+        is_boot_memory: false
+        cores:
+          - main
+      - !Nvm
+        name: ~
+        range:
+          start: 134217728
+          end: 134348800
+        is_boot_memory: true
+        cores:
+          - main
     flash_algorithms:
       - gd32e10x
 flash_algorithms:
