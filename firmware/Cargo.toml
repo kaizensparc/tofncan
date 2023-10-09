@@ -7,30 +7,28 @@ edition = "2021"
 
 [dependencies]
 embedded-hal = "0.2.7"
-cortex-m = { version = "0.7.6", features = ["critical-section-single-core"] }
-cortex-m-rt = "0.7.2"
+cortex-m = { version = "0.7.7", features = ["critical-section-single-core"] }
+cortex-m-rt = "0.7.3"
 nb = "1.0.0"
 panic-reset = "0.1.1"
 cortex-m-semihosting = "0.5.0"
-rtt-target = { version = "0.3.1", features = ["cortex-m"] }
+rtt-target = "0.4.0"
 veml7700 = "0.1.7"
-vl53l1 = "0.1.1"
-shared-bus = { version = "0.2.5", features = ["cortex-m"] }
+vl53l1 = { version = "0.1.2", features = ["ufmt"] }
+shared-bus = { version = "0.3.0", features = ["cortex-m"] }
 bxcan = "0.7.0"
-
-[patch.crates-io]
-gd32e1 = { path = "/home/kaizen/rust/gd32-rs/gd32e1" }
 
 [dependencies.sht3x]
 git = "https://github.com/miek/sht3x-rs"
 branch = "master"
 
 [dependencies.gd32e103-hal]
-path = "/home/kaizen/rust/gd32e103-hal"
+git = "https://github.com/gd32-rust/gd32e103-hal"
+branch = "main"
 features = ["rt"]
 
 [profile.dev]
 codegen-units = 1
-debug = 0
+debug = 1
 lto = true
 opt-level = "z"
